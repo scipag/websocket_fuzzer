@@ -11,6 +11,8 @@ import argparse
 import sys
 import datetime
 
+__version__ = "1.0.0"
+__author__ = "Andrea Hauser - scip AG"
 
 # Payload parsing is optimized for JSON, if other message types are used, change parsing here
 def payload_parsing(payload):
@@ -60,7 +62,7 @@ def fuzzer(cookie, hostname, url, fuzz_values_file, websocket_messages_file, pro
                     ws.send(message)
                     print("\n<----> WebSocket message that was sent/fuzzed: " + message)
                     
-                    # Receive answers for 3 seconds and process them
+                    # Receive answers for specified amount of seconds and process them
                     while True:
                         try:
                             ws.settimeout(timeout)
@@ -77,7 +79,7 @@ def fuzzer(cookie, hostname, url, fuzz_values_file, websocket_messages_file, pro
 
 def main():
     # Parse command line arguments
-    parser = argparse.ArgumentParser(description='Simple WebSocket fuzzer: Manuall analysis of results needed!')
+    parser = argparse.ArgumentParser(description='Simple WebSocket fuzzer: Manuall analysis of results needed! Author: ' + __author__)
     parser.add_argument('-c', '--cookie', type=str, help='Specifies a cookie for setting up WebSocket')
     parser.add_argument('-f', '--fuzz_file', type=str, 
                         help='File which contains the fuzzing attack payloads, one payload per line', required=True)
@@ -89,6 +91,7 @@ def main():
     parser.add_argument('-t', '--timeout', type=int, help='Specifies how long a WebSocket connection is kept open to receive responses', default=3)
     parser.add_argument('-u', '--url_path', type=str, help='URL path where protocol switching happens', default="/")
     parser.add_argument('-v', '--verbose', action='store_true', help='Increases program output in the console', default=False)
+    parser.add_argument('--version', action='version', version='%(prog)s ' + __version__)
     parser.add_argument('hostname', type=str, help='Hostname of the system to fuzz')
     args = parser.parse_args()
 

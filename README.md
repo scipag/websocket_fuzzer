@@ -19,9 +19,9 @@ The script currently only supports authentication via the cookie header. If othe
 ## Usage options
 
 ```
-usage: websocket-fuzzer.py [-h] [-c COOKIE] -f FUZZ_FILE -m MESSAGE_FILE [-p PROXY] [-t TIMEOUT] [-u URL_PATH] [-v] hostname
+usage: websocket-fuzzer.py [-h] [-c COOKIE] -f FUZZ_FILE -m MESSAGE_FILE [-p PROXY] [-t TIMEOUT] [-u URL_PATH] [-v] [--version] hostname
 
-Simple WebSocket fuzzer: Manuall analysis of results needed!
+Simple WebSocket fuzzer: Manuall analysis of results needed! Author: Andrea Hauser - scip AG
 
 positional arguments:
   hostname              Hostname of the system to fuzz
@@ -43,6 +43,7 @@ options:
   -u URL_PATH, --url_path URL_PATH
                         URL path where protocol switching happens
   -v, --verbose         Increases program output in the console
+  --version             show program's version number and exit
 ```
 
 ## Examples
